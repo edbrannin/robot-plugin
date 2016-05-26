@@ -31,6 +31,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.export.Exported;
 
 public class RobotCaseResult extends RobotTestObject{
 
@@ -70,6 +71,7 @@ public class RobotCaseResult extends RobotTestObject{
 	/**
 	 * {@inheritDoc}
 	 */
+	@Exported
 	@Override
 	public String getName() {
 		return name;
@@ -92,6 +94,7 @@ public class RobotCaseResult extends RobotTestObject{
 	}
 
 	@Override
+	@Exported
 	public long getDuration() {
 		if (duration != 0)
 			return duration;
@@ -104,6 +107,7 @@ public class RobotCaseResult extends RobotTestObject{
 		}
 	}
 
+	@Exported
 	public String getStarttime() {
 		return starttime;
 	}
@@ -112,6 +116,7 @@ public class RobotCaseResult extends RobotTestObject{
 		this.starttime = starttime;
 	}
 
+	@Exported
 	public String getEndtime() {
 		return endtime;
 	}
@@ -120,6 +125,7 @@ public class RobotCaseResult extends RobotTestObject{
 		this.endtime = endtime;
 	}
 
+	@Exported
 	public String getErrorMsg() {
 		return errorMsg;
 	}
@@ -136,22 +142,27 @@ public class RobotCaseResult extends RobotTestObject{
 		this.critical = critical;
 	}
 
+	@Exported
 	public String getDisplayName() {
 		return getName();
 	}
 
+	@Exported
 	public String getSearchUrl() {
 		return getName();
 	}
 
+	@Exported
 	public boolean isPassed() {
 		return passed;
 	}
 
+	@Exported
 	public boolean isCritical() {
 		return critical;
 	}
 
+	@Exported
 	public List<String> getTags(){
 		if(tags == null)
 			return new ArrayList<String>();
@@ -178,6 +189,7 @@ public class RobotCaseResult extends RobotTestObject{
 	 * Gives the buildnumber of the build that this case first failed in
 	 * @return number of build
 	 */
+	@Exported
 	public int getFailedSince(){
 		if (failedSince == 0 && !isPassed()) {
 			RobotCaseResult previous = getPreviousResult();
@@ -221,6 +233,7 @@ public class RobotCaseResult extends RobotTestObject{
 	 * Get the number of builds this test case has failed for
 	 * @return number of builds
 	 */
+	@Exported
 	public int getAge(){
 		if(isPassed()) return 0;
 		Run<?,?> owner = getOwner();
@@ -266,5 +279,10 @@ public class RobotCaseResult extends RobotTestObject{
 	public long getCriticalPassed() {
 		if(isPassed() && isCritical()) return 1;
 		return 0;
+	}
+
+	@Exported
+	public String getSuiteName() {
+		return getRelativeParent(this);
 	}
 }

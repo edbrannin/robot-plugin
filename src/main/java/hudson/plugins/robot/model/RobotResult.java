@@ -275,7 +275,7 @@ public class RobotResult extends RobotTestObject {
 	 * Get all failed test cases related to result.
 	 * @return list of test case results
 	 */
-	@Exported
+	@Exported(visibility=3)
 	public List<RobotCaseResult> getAllFailedCases(){
 		List<RobotCaseResult> allFailedCases = new ArrayList<RobotCaseResult>();
 		for(RobotSuiteResult suite : getSuites()){

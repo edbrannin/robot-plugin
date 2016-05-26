@@ -31,7 +31,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DurationFormatUtils;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.export.Exported;
+import org.kohsuke.stapler.export.ExportedBean;
 
+@ExportedBean(defaultVisibility=3)
 public abstract class RobotTestObject extends AbstractModelObject implements Serializable{
 
 	private static final long serialVersionUID = -3191755290679194469L;
@@ -201,6 +204,7 @@ public abstract class RobotTestObject extends AbstractModelObject implements Ser
 	 * Get duration of this testobject run
 	 * @return
 	 */
+	@Exported
 	public long getDuration() {
 		return duration;
 	}
@@ -209,6 +213,7 @@ public abstract class RobotTestObject extends AbstractModelObject implements Ser
 	 * Wrapper for calling formatting from jelly
 	 * @return
 	 */
+	@Exported
 	public String getHumanReadableDuration(){
 		return DurationFormatUtils.formatDurationHMS(getDuration());
 	}
